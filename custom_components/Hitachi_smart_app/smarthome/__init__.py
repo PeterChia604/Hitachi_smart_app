@@ -2,8 +2,9 @@
 from datetime import timedelta
 from typing import Literal
 import logging,hashlib,json,ssl,base64,re,asyncio
+from http import HTTPStatus
 
-from homeassistant.const import HTTP_OK
+#from homeassistant.const import HTTP_OK
 from homeassistant.util import Throttle
 from .exceptions import (
     HitachiRefreshTokenNotFound,
@@ -689,7 +690,8 @@ class smarthome(object):
             headers=headers,
             ssl=False,
         ) as response:
-            if response.status == HTTP_OK:
+#            if response.status == HTTP_OK:
+            if response.status == HTTPStatus.OK:
                 try:
                     resp = await response.json()
                 except:
